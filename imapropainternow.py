@@ -21,8 +21,8 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 factors = [1, 1, 1, 1, 1/2, 1/4, 1/8, 1/16, 1/32]
-START_TRAIN_AT_IMG_SIZE = 16
-DATASET = "/kaggle/working/images/"
+START_TRAIN_AT_IMG_SIZE = 4
+DATASET = "kaggle/working/images/"
 CHECKPOINT_GEN = "generator.pth"
 CHECKPOINT_CRITIC = "critic.pth"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -37,9 +37,9 @@ IN_CHANNELS = 256
 LAMBDA_GP = 10
 NUM_STEPS = int(log2(IMAGE_SIZE / 4)) + 1
 
-PROGRESSIVE_EPOCHS = [100] * len(BATCH_SIZES)
+PROGRESSIVE_EPOCHS = [1] * len(BATCH_SIZES)
 FIXED_NOISE = torch.randn(8, Z_DIM, 1, 1).to(DEVICE)
-NUM_WORKERS = 4
+NUM_WORKERS = 1
 
 class WSConv2d(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1, gain=2):
