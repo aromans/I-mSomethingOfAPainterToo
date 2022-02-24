@@ -378,4 +378,7 @@ def main():
 wandb.init(project='ImAProPainter')
 run_id = wandb.run.id
 torch.backends.cudnn.benchmarks = True # performance benefits!
-main()
+try:
+    main()
+except e as Exception:
+    print(e);
